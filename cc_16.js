@@ -35,3 +35,39 @@ async function fetchProductsAsync() {
     handleError(error);
   }
 }
+
+// Task 4: Display the Products
+// This function selects the product container and loops through the first 5 products.
+// It creates HTML elements for each product's image, name, and price, then appends them.
+function displayProducts(products) {
+  const productContainer = document.getElementById('product-container');
+  productContainer.innerHTML = ''; // Clear any existing content
+
+  products.slice(0, 5).forEach(product => {
+    const productDiv = document.createElement('div');
+    productDiv.className = 'product';
+
+    // Create and populate the image element.
+    const imgEl = document.createElement('img');
+    imgEl.src = product.fields.image[0].url;
+    imgEl.alt = product.fields.name;
+
+    // Create and populate the product name element.
+    const nameEl = document.createElement('h3');
+    nameEl.textContent = product.fields.name;
+
+    // Create and populate the product price element.
+    const priceEl = document.createElement('p');
+    // Convert price from cents to dollars if needed.
+    const priceInDollars = product.fields.price / 100;
+    priceEl.textContent = `$${priceInDollars.toFixed(2)}`;
+
+    // Append the elements to the product div.
+    productDiv.appendChild(imgEl);
+    productDiv.appendChild(nameEl);
+    productDiv.appendChild(priceEl);
+
+    // Append the product div to the product container.
+    productContainer.appendChild(productDiv);
+  });
+}
