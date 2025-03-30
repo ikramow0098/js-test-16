@@ -77,3 +77,8 @@ function displayProducts(products) {
 function handleError(error) {
   console.error("An error occurred:", error.message);
 }
+
+// Task 6: Call Your Fetch Functions
+// These calls trigger the product fetch operations when the script loads.
+fetchProductsThen();
+fetchProductsAsync();
